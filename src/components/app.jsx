@@ -27,7 +27,7 @@ class App extends React.Component {
       case 'review-cards':
         return <ReviewCards />;
       case 'view-cards':
-        return <ViewCards />;
+        return <ViewCards cards={this.state.cards}/>;
       default:
         return null;
     }
@@ -49,11 +49,26 @@ class App extends React.Component {
   }
 
   addCard(card) {
-    const cards = [...this.state.cards, card];
+    const cards = this.state.cards ? [...this.state.cards, card] : [card];
 
     this.setState({ cards: cards }, () => {
       this.saveCards();
     });
+  }
+
+  componentDidMount() {
+    this.loadCards();
+  }
+
+  loadCards() {
+    let storedCards = localStorage.getItem('flash-cards');
+    storedCards = JSON.parse(storedCards);
+
+    if (!storedCards) {
+      storedCards = [];
+    }
+
+    this.setState({ cards: storedCards });
   }
 
   render() {

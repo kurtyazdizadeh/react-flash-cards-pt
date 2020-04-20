@@ -28,7 +28,6 @@ class CreateCards extends React.Component {
   }
 
   submitCard() {
-    event.preventDefault();
     this.props.addCard(this.state);
     this.resetForm();
     this.props.setView('view-cards');
@@ -70,10 +69,10 @@ class CreateCards extends React.Component {
               value={this.state.answer}>
             </textarea>
           </div>
-          <div className="form-group text-align-right">
+          <div className="form-group text-right">
             <button
               className="btn btn-outline-primary mr-3"
-              type="submit"
+              type="button"
               onClick={this.submitCard}
             >
               Save Card
