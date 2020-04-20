@@ -27,7 +27,7 @@ class App extends React.Component {
       case 'review-cards':
         return <ReviewCards />;
       case 'view-cards':
-        return <ViewCards />;
+        return <ViewCards cards={this.state.cards}/>;
       default:
         return null;
     }
@@ -54,6 +54,17 @@ class App extends React.Component {
     this.setState({ cards: cards }, () => {
       this.saveCards();
     });
+  }
+
+  componentDidMount() {
+    this.loadCards();
+  }
+
+  loadCards() {
+    let storedCards = localStorage.getItem('flash-cards');
+    storedCards = JSON.parse(storedCards);
+
+    this.setState({ cards: storedCards });
   }
 
   render() {
