@@ -41,11 +41,11 @@ class CreateCards extends React.Component {
 
   render() {
     return (
-      <div className="create-card">
+      <div className="d-flex justify-content-center align-items-center flex-column">
         <h1 className="text-center">
         Create New Card
         </h1>
-        <form>
+        <form className="d-flex flex-column">
           <div className="form-group">
             <label htmlFor="question">Question:</label>
             <textarea
@@ -70,7 +70,7 @@ class CreateCards extends React.Component {
               value={this.state.answer}>
             </textarea>
           </div>
-          <div className="form-group buttons">
+          <div className="form-group text-align-right">
             <button
               className="btn btn-outline-primary mr-3"
               type="submit"
