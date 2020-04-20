@@ -8,6 +8,8 @@ class CreateCards extends React.Component {
       answer: ''
     };
     this.handleChange = this.handleChange.bind(this);
+    this.resetForm = this.resetForm.bind(this);
+    this.submitCard = this.submitCard.bind(this);
   }
 
   handleChange(event) {
@@ -25,13 +27,25 @@ class CreateCards extends React.Component {
     this.setState(change);
   }
 
+  submitCard() {
+    event.preventDefault();
+    this.props.addCard(this.state);
+    this.resetForm();
+    this.props.setView('view-cards');
+  }
+
+  resetForm() {
+    event.preventDefault();
+    this.setState({ question: '', answer: '' });
+  }
+
   render() {
     return (
       <div className="create-card">
         <h1 className="text-center">
         Create New Card
         </h1>
-        <form action="">
+        <form>
           <div className="form-group">
             <label htmlFor="question">Question:</label>
             <textarea
@@ -60,11 +74,13 @@ class CreateCards extends React.Component {
             <button
               className="btn btn-outline-primary mr-3"
               type="submit"
+              onClick={this.submitCard}
             >
               Save Card
             </button>
             <button
               className="btn btn-outline-danger"
+              onClick={this.resetForm}
             >
               Cancel
             </button>

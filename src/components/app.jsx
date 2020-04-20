@@ -23,7 +23,7 @@ class App extends React.Component {
   getView() {
     switch (this.state.view) {
       case 'create-card':
-        return <CreateCard addcard={this.addcard}/>;
+        return <CreateCard addCard={this.addCard} setView={this.setView}/>;
       case 'review-cards':
         return <ReviewCards />;
       case 'view-cards':
@@ -34,14 +34,22 @@ class App extends React.Component {
   }
 
   saveCards() {
-    const cardsJSON = JSON.stringify(this.state.cards);
+    let cardsInLocalStorage = localStorage.getItem('flash-cards');
 
-    localStorage.setItem('flash-cards', cardsJSON);
+    const updatedCards = [...this.state.cards];
+
+    if (cardsInLocalStorage) {
+      cardsInLocalStorage = JSON.parse(cardsInLocalStorage);
+      for (let i = 0; i < cardsInLocalStorage.length; i++) {
+        updatedCards.push(cardsInLocalStorage[i]);
+      }
+    }
+
+    localStorage.setItem('flash-cards', JSON.stringify(updatedCards));
   }
 
   addCard(card) {
-    const cards = [...this.state.cards];
-    cards.push(card);
+    const cards = [...this.state.cards, card];
 
     this.setState({ cards: cards }, () => {
       this.saveCards();
@@ -49,7 +57,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('Cards from App:', this.state.cards);
     return (
       <div>
         <Nav setView={this.setView} />
