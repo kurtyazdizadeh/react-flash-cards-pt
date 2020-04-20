@@ -64,6 +64,10 @@ class App extends React.Component {
     let storedCards = localStorage.getItem('flash-cards');
     storedCards = JSON.parse(storedCards);
 
+    if (!storedCards) {
+      storedCards = [];
+    }
+
     this.setState({ cards: storedCards });
   }
 

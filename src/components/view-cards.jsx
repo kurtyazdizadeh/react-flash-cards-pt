@@ -37,7 +37,7 @@ class ViewCards extends React.Component {
       <div className="col">
         <h1 className="text-center">My Cards</h1>
         <div className="row row-cols-1 row-cols-md-3">
-          { this.props.cards ? this.renderCards() : ''}
+          { this.renderCards() }
         </div>
       </div>
     );

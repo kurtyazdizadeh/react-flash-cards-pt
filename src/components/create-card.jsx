@@ -69,7 +69,7 @@ class CreateCards extends React.Component {
               value={this.state.answer}>
             </textarea>
           </div>
-          <div className="form-group text-align-right">
+          <div className="form-group text-right">
             <button
               className="btn btn-outline-primary mr-3"
               type="button"
