@@ -49,7 +49,7 @@ class App extends React.Component {
   }
 
   addCard(card) {
-    const cards = [...this.state.cards, card];
+    const cards = this.state.cards ? [...this.state.cards, card] : [card];
 
     this.setState({ cards: cards }, () => {
       this.saveCards();
