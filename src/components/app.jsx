@@ -8,10 +8,12 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'view-cards'
+      view: 'view-cards',
+      cards: []
     };
 
     this.setView = this.setView.bind(this);
+    this.addCard = this.addCard.bind(this);
   }
 
   setView(view) {
@@ -21,7 +23,7 @@ class App extends React.Component {
   getView() {
     switch (this.state.view) {
       case 'create-card':
-        return <CreateCard />;
+        return <CreateCard addCard={this.addCard} setView={this.setView}/>;
       case 'review-cards':
         return <ReviewCards />;
       case 'view-cards':
@@ -29,6 +31,29 @@ class App extends React.Component {
       default:
         return null;
     }
+  }
+
+  saveCards() {
+    let cardsInLocalStorage = localStorage.getItem('flash-cards');
+
+    const updatedCards = [...this.state.cards];
+
+    if (cardsInLocalStorage) {
+      cardsInLocalStorage = JSON.parse(cardsInLocalStorage);
+      for (let i = 0; i < cardsInLocalStorage.length; i++) {
+        updatedCards.push(cardsInLocalStorage[i]);
+      }
+    }
+
+    localStorage.setItem('flash-cards', JSON.stringify(updatedCards));
+  }
+
+  addCard(card) {
+    const cards = [...this.state.cards, card];
+
+    this.setState({ cards: cards }, () => {
+      this.saveCards();
+    });
   }
 
   render() {
