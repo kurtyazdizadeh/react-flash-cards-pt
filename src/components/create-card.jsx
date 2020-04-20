@@ -10,6 +10,21 @@ class CreateCards extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  handleChange(event) {
+    const change = {};
+    switch (event.target.id) {
+      case 'question':
+        change.question = event.target.value;
+        break;
+      case 'answer':
+        change.answer = event.target.value;
+        break;
+      default:
+        break;
+    }
+    this.setState(change);
+  }
+
   render() {
     return (
       <div className="create-card">
