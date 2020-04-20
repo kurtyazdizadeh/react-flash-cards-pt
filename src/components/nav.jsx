@@ -23,35 +23,34 @@ class Nav extends React.Component {
     }
 
     this.props.setView(view);
+  }
 
+  renderLinks() {
+    const links = ['View Cards', 'Review Cards', 'Create Card'];
+    const anchorClasses = 'nav-item nav-link';
+    let elements = null;
+
+    elements = links.map((link, index) => {
+      return (
+        <a
+          className={anchorClasses}
+          href="#"
+          onClick={this.handleClick}
+          key={index}
+        >
+          {link}
+        </a>
+      );
+    });
+
+    return elements;
   }
 
   render() {
-    const anchorClasses = 'nav-item nav-link';
+
     return (
       <nav className="navbar fixed-top navbar-light bg-light justify-content-around">
-        <a
-          className={anchorClasses}
-          href="#"
-          onClick={this.handleClick}
-          data="view-cards"
-        >
-          View Cards
-        </a>
-        <a
-          className={anchorClasses}
-          href="#"
-          onClick={this.handleClick}
-        >
-          Review Cards
-        </a>
-        <a
-          className={anchorClasses}
-          href="#"
-          onClick={this.handleClick}
-        >
-          Create Card
-        </a>
+        {this.renderLinks()}
       </nav>
     );
   }
