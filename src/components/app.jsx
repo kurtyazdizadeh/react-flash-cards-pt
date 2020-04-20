@@ -6,13 +6,15 @@ import CreateCard from './create-card';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state{
+    this.state = {
       view: 'view-cards'
-    }
+    };
   }
+
   setView(view) {
-    this.setState({ view: view })
+    this.setState({ view: view });
   }
+
   getView() {
     switch (this.state.view) {
       case 'create-card':
@@ -25,8 +27,13 @@ class App extends React.Component {
         return null;
     }
   }
+
   render() {
-    return <h1 className="text-center">Flash Card App</h1>;
+    return (
+      <div>
+        { this.getView() }
+      </div>
+    );
   }
 }
 
