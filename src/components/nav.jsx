@@ -47,10 +47,9 @@ class Nav extends React.Component {
   }
 
   render() {
-
     return (
       <nav className="navbar fixed-top navbar-light bg-light justify-content-around">
-        {this.renderLinks()}
+        { this.renderLinks() }
       </nav>
     );
   }
